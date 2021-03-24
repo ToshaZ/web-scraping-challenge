@@ -20,9 +20,26 @@
     <!-- News article -->
     <div class="row" id="latest-news-title">
       <div class="col-md-12">
-        <h2 class="heading">{{mars.news_title}}</h2>
+        <h3>Latest Mars News</h3>
+        <h4 class="title">{{mars.news_title}}</h4>
+        <p class="teaser">{{mars.latest_news}}</p>
       </div>
     </div>
+
+    <div class="row" id="featured-image">
+      <div class="col-md-8">
+        <h3>Featured Mars Image</h3>
+        <img class="col-md-12 border" src="{{mars.featured_img}}" alt="Features Mars Image">
+      </div>
+      <div class="col-md-4">
+        <div class="card".table-striped>
+          <h3>Mars Facts</h3>
+          {{mars.mars_facts | safe}}
+        </div>
+      </div>
+    </div>
+
+    
 
   </div>
 

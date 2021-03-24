@@ -10,11 +10,12 @@ import requests
 import pandas as pd
 from splinter import Browser
 from webdriver_manager.chrome import ChromeDriverManager
+import time
 
 def init_browser():
     # Setup splinter
     executable_path = {'executable_path': ChromeDriverManager().install()}
-    browser = Browser('chrome', **executable_path, headless=False)
+    return Browser('chrome', **executable_path, headless=False)
 
 
 def scrape():
@@ -23,6 +24,8 @@ def scrape():
     # URL of page to be scraped
     url = 'https://mars.nasa.gov/news/'
     browser.visit(url)
+
+    time.sleep(1)
 
     # HTML Object
     html = browser.html
@@ -61,7 +64,7 @@ def scrape():
     browser.visit(facts_url)
 
     # HTML Object
-    facts_html = browser.html
+    #facts_html = browser.html
 
     # Use Pandas to scrape the table
     facts_table = pd.read_html(facts_url)
@@ -77,7 +80,7 @@ def scrape():
     mars_df = mars_df.set_index('Description')
 
     # Use Pandas to convert the data to a HTML table string
-    mars_df.to_html('table.html')
+    mars_facts = mars_df.to_html()
 
 
     # Mars Hemispheres
@@ -130,7 +133,7 @@ def scrape():
         "news_title": news_title,
         "latest_news": news_p,
         "featured_img": featured_image_url,
-        "mars_df": mars_df,
+        "mars_facts": mars_facts,
         "hemisphere_img": hemisphere_image_urls
     }
 
