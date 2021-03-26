@@ -29,14 +29,27 @@
     <div class="row" id="featured-image">
       <div class="col-md-8">
         <h3>Featured Mars Image</h3>
-        <img class="col-md-12 border" src="{{mars.featured_img}}" alt="Features Mars Image">
+        <img class="col-md-12" src="{{mars.featured_img}}" alt="Features Mars Image">
       </div>
       <div class="col-md-4">
-        <div class="card".table-striped>
+        <div class="table-striped">
           <h3>Mars Facts</h3>
           {{mars.mars_facts | safe}}
         </div>
       </div>
+    </div>
+
+    <hr>
+
+    <div class="row" id="hemisphere">
+      <h2 class="align-items-center">Mars Hemispheres</h2>
+      <hr>
+      {% for i in mars.hemisphere_img %}
+      <div class="col-md-6 border">
+        <img width= "450" src="{{i.img_url}}">
+        <h3>{{i.title}}</h3>
+      </div>
+      {% endfor %}
     </div>
 
     
